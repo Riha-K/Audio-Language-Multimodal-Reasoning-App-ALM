@@ -1,0 +1,45 @@
+# ALM Training Configuration
+
+# Model Configuration
+base_model_name: "meta-llama/Llama-2-7b-chat-hf"
+audio_dim: 64
+hidden_dim: 768
+num_audio_queries: 32
+num_audio_layers: 6
+num_aggregator_layers: 3
+use_lora: true
+
+# Training Configuration
+batch_size: 4
+micro_batch_size: 1
+num_epochs: 3
+learning_rate: 3e-4
+weight_decay: 0.01
+max_length: 512
+gradient_accumulation_steps: 4
+
+# Data Configuration
+train_data_path: "datasets/asian_audio/train_asian_audio_dataset.json"
+val_data_path: "datasets/asian_audio/val_asian_audio_dataset.json"
+test_data_path: "datasets/asian_audio/test_asian_audio_dataset.json"
+
+# Output Configuration
+output_dir: "checkpoints/alm_model"
+save_steps: 100
+eval_steps: 200
+logging_steps: 10
+
+# Wandb Configuration
+use_wandb: true
+wandb_project: "alm-hackathon"
+wandb_run_name: "alm-training"
+
+# Audio Configuration
+sample_rate: 16000
+max_audio_length: 30.0
+
+# LoRA Configuration
+lora_r: 8
+lora_alpha: 16
+lora_dropout: 0.05
+lora_target_modules: ["q_proj", "v_proj", "k_proj", "o_proj"]
